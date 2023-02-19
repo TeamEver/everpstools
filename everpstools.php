@@ -144,25 +144,21 @@ class Everpstools extends Module
     protected function renderForm()
     {
         $helper = new HelperForm();
-
         $helper->show_toolbar = false;
         $helper->table = $this->table;
         $helper->module = $this;
         $helper->default_form_language = $this->context->language->id;
         $helper->allow_employee_form_lang = Configuration::get('PS_BO_ALLOW_EMPLOYEE_FORM_LANG', 0);
-
         $helper->identifier = $this->identifier;
         $helper->submit_action = 'submitEverConfiguration';
         $helper->currentIndex = $this->context->link->getAdminLink('AdminModules', false)
             .'&configure='.$this->name.'&tab_module='.$this->tab.'&module_name='.$this->name;
         $helper->token = Tools::getAdminTokenLite('AdminModules');
-
         $helper->tpl_vars = array(
             'fields_value' => $this->getConfigFormValues(),
             'languages' => $this->context->controller->getLanguages(),
             'id_language' => $this->context->language->id,
         );
-
         return $helper->generateForm($this->getConfigForm());
     }
 
@@ -172,46 +168,6 @@ class Everpstools extends Module
     protected function getConfigForm()
     {
         $orderStates = OrderState::getOrderStates((int)$this->context->language->id);
-        $countries = Country::getCountries((int)$this->context->language->id);
-        $currencies = Currency::getCurrencies();
-        $carriers = Carrier::getCarriers(
-            (int)$this->context->language->id,
-            true
-        );
-        $idwSmtpTemplates = [
-            [
-                'id_template' => 'order_return_customer_1',
-                'name' => 'order_return_customer_1'
-            ],
-            [
-                'id_template' => 'order_return_customer_2',
-                'name' => 'order_return_customer_2'
-            ],
-            [
-                'id_template' => 'order_return_customer_3',
-                'name' => 'order_return_customer_3'
-            ],
-            [
-                'id_template' => 'order_return_customer_1',
-                'name' => 'order_return_customer_1'
-            ],
-            [
-                'id_template' => 'order_return_customer_payant_1',
-                'name' => 'order_return_customer_payant_1'
-            ],
-            [
-                'id_template' => 'order_return_customer_payant_2',
-                'name' => 'order_return_customer_payant_2'
-            ],
-            [
-                'id_template' => 'order_return_customer_payant_3',
-                'name' => 'order_return_customer_payant_3'
-            ],
-            [
-                'id_template' => 'mail_vide',
-                'name' => 'mail_vide'
-            ]
-        ];
         $form_fields = array();
         $form_fields[] = array(
             'form' => array(

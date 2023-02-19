@@ -8,17 +8,17 @@
 <div class="alert alert-info row">
     <h4>{l s='Documentation' mod='everpstools'}</h4>
     <br>
-    {if isset($idw_crons) && $idw_crons}
+    {if isset($ever_crons) && $ever_crons}
     <h3>{l s='Crons' mod='everpstools'}</h3>
     <ul>
-        {foreach from=$idw_crons item=cron}
+        {foreach from=$ever_crons item=cron}
         <li><code>{$cron.link}</code> {$cron.description}</li>
         {/foreach}
     </ul>
     {/if}
     <br>
     <br>
-    <h3>{l s='How to include Ever files on your own module ?' mod='everpstools'}</h3>
+    <h3>{l s='How to include Ever Tools on your own module ?' mod='everpstools'}</h3>
     <p>{l s='Add this code on the highest level of your module' mod='everpstools'}</p>
     <p>
         <pre>
