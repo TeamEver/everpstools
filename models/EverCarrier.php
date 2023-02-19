@@ -1,8 +1,8 @@
 <?php
 /**
  * Project : everpstools
- * @author Celaneo
- * @copyright Celaneo
+ * @author Team Ever
+ * @copyright Team Ever
  * @license   Tous droits réservés / Le droit d'auteur s'applique (All rights reserved / French copyright law applies)
  * @link https://www.celaneo.com
  */
@@ -91,43 +91,5 @@ class EverCarrier extends ObjectModel
         } else {
             return false;
         }
-    }
-
-    /**
-     * @param $idCarrier
-     * @return bool
-     */
-    public static function isSpring(int $idCarrier)
-    {
-        $springIdCarrier = Configuration::get('IW_SPRING_CARRIER_ID');
-        if (!$springIdCarrier) {
-            return false;
-        }
-        if ((int)$idCarrier == (int)$springIdCarrier) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Get PMS code for given carrier id reference
-     * @return string | null
-    */
-    public static function getPmsCarrierCodeByCarrierReference($carrierIdReference)
-    {
-        return Configuration::get(
-            'PMS_CARRIER_CODE_'.(int)$carrierIdReference
-        );
-    }
-
-    /**
-     * Get carrier id reference for given PMS code
-     * @return string | null
-    */
-    public static function getCarrierIdByPmsCarrierCode($pmsCarrierCode)
-    {
-        return Configuration::get(
-            'PMS_CARRIER_ID_REFERENCE_'.(int)$pmsCarrierCode
-        );
     }
 }

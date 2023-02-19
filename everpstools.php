@@ -1,8 +1,8 @@
 <?php
 /**
  * Project : everpstools
- * @author Celaneo
- * @copyright Celaneo
+ * @author Team Ever
+ * @copyright Team Ever
  * @license   Tous droits réservés / Le droit d'auteur s'applique (All rights reserved / French copyright law applies)
  * @link https://www.celaneo.com
  */
@@ -54,9 +54,9 @@ class Everpstools extends Module
         // Install SQL
         include(dirname(__FILE__).'/sql/install.php');
 
-        Configuration::updateValue('IW_CANCELLED_STATES_ID', '["2"]');
-        Configuration::updateValue('IW_ALLOWED_CURRENCIES', '["1, 2, 3"]');
-        Configuration::updateValue('IW_LAYERED_FILTER_URL', '/pack-1,/promotions-promotions');
+        Configuration::updateValue('EVER_CANCELLED_STATES_ID', '["2"]');
+        Configuration::updateValue('EVER_ALLOWED_CURRENCIES', '["1, 2, 3"]');
+        Configuration::updateValue('EVER_LAYERED_FILTER_URL', '/pack-1,/promotions-promotions');
 
         return parent::install();
     }
@@ -181,7 +181,7 @@ class Everpstools extends Module
                         'label' => $this->l('Logs expiration date (per monthes)'),
                         'desc' => $this->l('Please add logs expiration date per month. Leaving empty will set 3'),
                         'hint' => $this->l('Must be an integer'),
-                        'name' => 'IW_LOGS_EXPIRATION',
+                        'name' => 'EVER_LOGS_EXPIRATION',
                         'col' => 5,
                     ),
                     array(
@@ -189,7 +189,7 @@ class Everpstools extends Module
                         'label' => $this->l('Allowed IP addresses for developpers'),
                         'desc' => $this->l('Please add developper IP addresses separated by ","'),
                         'hint' => $this->l('Leave empty for no use'),
-                        'name' => 'IW_ALLOWED_IP',
+                        'name' => 'EVER_ALLOWED_IP',
                         'col' => 5,
                     ),
                     array(
@@ -197,7 +197,7 @@ class Everpstools extends Module
                         'label' => $this->l('Enable debug mode on developpers IP addresses ?'),
                         'desc' => $this->l('Will enable debug mode but only for developpers IP addresses'),
                         'hint' => $this->l('Set No to disable developper debug mode'),
-                        'name' => 'IW_DEVELOPPER_DEBUG',
+                        'name' => 'EVER_DEVELOPPER_DEBUG',
                         'is_bool' => true,
                         'values' => [
                             [
@@ -217,7 +217,7 @@ class Everpstools extends Module
                         'label' => $this->l('Log PHP errors on developpers debug mode ?'),
                         'desc' => $this->l('Will log PHP errors on file if developper mode is enabled and IP is allowed'),
                         'hint' => $this->l('Set No to disable global PHP errors log file'),
-                        'name' => 'IW_ERROR_LOG',
+                        'name' => 'EVER_ERROR_LOG',
                         'is_bool' => true,
                         'values' => [
                             [
@@ -267,7 +267,7 @@ class Everpstools extends Module
                         'label' => $this->l('Cancelled order states'),
                         'hint' => $this->l('Will be used for deleting entries on mixte table'),
                         'desc' => $this->l('Specify the cancelled order states'),
-                        'name' => 'IW_CANCELLED_STATES_ID[]',
+                        'name' => 'EVER_CANCELLED_STATES_ID[]',
                         'class' => 'chosen',
                         'multiple' => true,
                         'required' => true,
@@ -282,7 +282,7 @@ class Everpstools extends Module
                         'label' => $this->l('Developper email'),
                         'hint' => $this->l('Will send email logs to this email'),
                         'desc' => $this->l('Enter a valid email'),
-                        'name' => 'IW_DEVELOPPER_MAIL',
+                        'name' => 'EVER_DEVELOPPER_MAIL',
                     ),
                 ),
                 'submit' => array(
@@ -301,15 +301,15 @@ class Everpstools extends Module
     {
         $formValues = [];
         $formValues[] = [
-            'IW_LOGS_EXPIRATION' => Configuration::get('IW_LOGS_EXPIRATION'),
-            'IW_ALLOWED_IP' => Configuration::get('IW_ALLOWED_IP'),
-            'IW_DEVELOPPER_DEBUG' => Configuration::get('IW_DEVELOPPER_DEBUG'),
-            'IW_ERROR_LOG' => Configuration::get('IW_ERROR_LOG'),
-            'IW_CANCELLED_STATES_ID[]' => Tools::getValue(
-                'IW_CANCELLED_STATES_ID',
+            'EVER_LOGS_EXPIRATION' => Configuration::get('EVER_LOGS_EXPIRATION'),
+            'EVER_ALLOWED_IP' => Configuration::get('EVER_ALLOWED_IP'),
+            'EVER_DEVELOPPER_DEBUG' => Configuration::get('EVER_DEVELOPPER_DEBUG'),
+            'EVER_ERROR_LOG' => Configuration::get('EVER_ERROR_LOG'),
+            'EVER_CANCELLED_STATES_ID[]' => Tools::getValue(
+                'EVER_CANCELLED_STATES_ID',
                 json_decode(
                     Configuration::get(
-                        'IW_CANCELLED_STATES_ID'
+                        'EVER_CANCELLED_STATES_ID'
                     )
                 )
             ),
@@ -320,8 +320,8 @@ class Everpstools extends Module
 
     protected function postValidation()
     {
-        if (!Tools::getValue('IW_CANCELLED_STATES_ID')
-            || !Validate::isArrayWithIds(Tools::getValue('IW_CANCELLED_STATES_ID'))
+        if (!Tools::getValue('EVER_CANCELLED_STATES_ID')
+            || !Validate::isArrayWithIds(Tools::getValue('EVER_CANCELLED_STATES_ID'))
         ) {
             $this->postErrors[] = $this->l('Error : [Cancelled order states] is not valid');
         }
@@ -335,10 +335,10 @@ class Everpstools extends Module
         if (Tools::isSubmit('submitEverConfiguration')) {
             $form_values = $this->getConfigFormValues();
             foreach (array_keys($form_values) as $key) {
-                if ($key == 'IW_CANCELLED_STATES_ID[]') {
+                if ($key == 'EVER_CANCELLED_STATES_ID[]') {
                     Configuration::updateValue(
-                        'IW_CANCELLED_STATES_ID',
-                        json_encode(Tools::getValue('IW_CANCELLED_STATES_ID')),
+                        'EVER_CANCELLED_STATES_ID',
+                        json_encode(Tools::getValue('EVER_CANCELLED_STATES_ID')),
                         true
                     );
                 } else {

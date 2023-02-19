@@ -1,8 +1,8 @@
 <?php
 /**
  * Project : everpstools
- * @author Celaneo
- * @copyright Celaneo
+ * @author Team Ever
+ * @copyright Team Ever
  * @license   Tous droits réservés / Le droit d'auteur s'applique (All rights reserved / French copyright law applies)
  * @link https://www.celaneo.com
  */
@@ -91,130 +91,6 @@ class EverCountry extends ObjectModel
         } else {
             return false;
         }
-    }
-
-    /**
-     * Check if country is in UE
-     * @param $iso_code
-     * @return bool
-     */
-    public static function isInUe($iso_code)
-    {
-        $ueIsoCodes = [
-            'DE',
-            'BE',
-            'AT',
-            'BG',
-            'CY',
-            'HR',
-            'DK',
-            'ES',
-            'EE',
-            'FI',
-            'FR',
-            'FX',
-            'GR',
-            'EL',
-            'HU',
-            'IE',
-            'IT',
-            'LV',
-            'LT',
-            'LU',
-            'MT',
-            'NL',
-            'PL',
-            'PT',
-            'CZ',
-            'RO',
-            'SK',
-            'SI',
-            'SE'
-        ];
-        return in_array(
-            $iso_code,
-            $ueIsoCodes
-        );
-    }
-
-    public static function isCanada()
-    {
-        $canadaIdCountry = Configuration::get('IW_CANADA_COUNTRY_ID');
-        if (!$canadaIdCountry) {
-            return false;
-        }
-        $context = Context::getContext();
-        $address = new Address(
-            (int)$context->cart->id_address_delivery
-        );
-        if ((int)$canadaIdCountry ==  (int)$address->id_country) {
-            return true;
-        }
-        return false;
-    }
-
-    public static function isUsa()
-    {
-        $usaIdCountry = Configuration::get('IW_USA_COUNTRY_ID');
-        if (!$usaIdCountry) {
-            return false;
-        }
-        $context = Context::getContext();
-        $address = new Address(
-            (int)$context->cart->id_address_delivery
-        );
-        if ((int)$usaIdCountry ==  (int)$address->id_country) {
-            return true;
-        }
-        return false;
-    }
-
-    public static function isBelgium()
-    {
-        $belgiumIdCountry = Configuration::get('IW_BELGIUM_COUNTRY_ID');
-        if (!$belgiumIdCountry) {
-            return false;
-        }
-        $context = Context::getContext();
-        $address = new Address(
-            (int)$context->cart->id_address_delivery
-        );
-        if ((int)$belgiumIdCountry ==  (int)$address->id_country) {
-            return true;
-        }
-        return false;
-    }
-
-    public static function isNetherlands()
-    {
-        $netherlandsIdCountry = Configuration::get('IW_NETHERLANDS_COUNTRY_ID');
-        if (!$netherlandsIdCountry) {
-            return false;
-        }
-        $context = Context::getContext();
-        $address = new Address(
-            (int)$context->cart->id_address_delivery
-        );
-        if ((int)$netherlandsIdCountry ==  (int)$address->id_country) {
-            return true;
-        }
-        return false;
-    }
-
-    public static function isGermany()
-    {
-        $germanyIdCountry = Configuration::get('IW_GERMANY_COUNTRY_ID');
-        if (!$germanyIdCountry) {
-            return false;
-        }
-        $context = Context::getContext();
-        $address = new Address(
-            (int)$context->cart->id_address_delivery
-        );
-        if ((int)$germanyIdCountry ==  (int)$address->id_country) {
-            return true;
-        }
-        return false;
     }
 
     /**

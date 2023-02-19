@@ -1,8 +1,8 @@
 <?php
 /**
  * Project : everpstools
- * @author Celaneo
- * @copyright Celaneo
+ * @author Team Ever
+ * @copyright Team Ever
  * @license   Tous droits réservés / Le droit d'auteur s'applique (All rights reserved / French copyright law applies)
  * @link https://www.celaneo.com
  */
@@ -52,12 +52,12 @@ class EverTools extends ObjectModel
     */
     public static function debugMode()
     {
-        if ((bool)Configuration::get('IW_DEVELOPPER_DEBUG') === true
+        if ((bool)Configuration::get('EVER_DEVELOPPER_DEBUG') === true
             && (bool)self::isAllowedIp() === true
         ) {
             @ini_set('display_errors', 'on');
             @error_reporting(E_ALL | E_STRICT);
-            if ((bool)Configuration::get('IW_ERROR_LOG') === true) {
+            if ((bool)Configuration::get('EVER_ERROR_LOG') === true) {
                 ini_set('error_log', IWLog::GLOBAL_ERRORS_LOGS.'php-error.log');
             }
             // Assign to context
@@ -97,7 +97,7 @@ class EverTools extends ObjectModel
     */
     public static function isAllowedIp()
     {
-        $allowedIpConfiguration = Configuration::get('IW_ALLOWED_IP');
+        $allowedIpConfiguration = Configuration::get('EVER_ALLOWED_IP');
         if (!$allowedIpConfiguration) {
             $allowedIpLists = [
                 '176.156.0.96'

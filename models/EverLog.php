@@ -1,8 +1,8 @@
 <?php
 /**
  * Project : everpstools
- * @author Celaneo
- * @copyright Celaneo
+ * @author Team Ever
+ * @copyright Team Ever
  * @license   Tous droits réservés / Le droit d'auteur s'applique (All rights reserved / French copyright law applies)
  * @link https://www.celaneo.com
  */
@@ -94,7 +94,7 @@ class EverLog extends ObjectModel
             $params = [
                 '{content}' => $content
             ];
-            $developperMail = Configuration::get('IW_DEVELOPPER_MAIL');
+            $developperMail = Configuration::get('EVER_DEVELOPPER_MAIL');
             if ($developperMail
                 && Validate::isEmail($developperMail)
             ) {
@@ -192,7 +192,7 @@ class EverLog extends ObjectModel
 
     public static function dropObsoleteLogs()
     {
-        $expirationDelay = (int)Configuration::get('IW_LOGS_EXPIRATION');
+        $expirationDelay = (int)Configuration::get('EVER_LOGS_EXPIRATION');
         if ((int)$expirationDelay <= 0) {
             $expirationDelay = 3;
         }
@@ -206,7 +206,7 @@ class EverLog extends ObjectModel
 
     public static function dropObsoleteLogFiles()
     {
-        $expirationDelay = (int)Configuration::get('IW_LOGS_EXPIRATION');
+        $expirationDelay = (int)Configuration::get('EVER_LOGS_EXPIRATION');
         if ((int)$expirationDelay <= 0) {
             $expirationDelay = 3;
         }
