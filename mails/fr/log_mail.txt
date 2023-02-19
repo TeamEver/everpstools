@@ -1,0 +1,10 @@
+
+	
+	[{shop_name}] Log INDERWEAR
+
+		
+			{content}
+				
+	
+
+
