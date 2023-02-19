@@ -101,10 +101,10 @@ class EverLog extends ObjectModel
                 $sent = Mail::Send(
                     Configuration::get('PS_LANG_DEFAULT'),
                     'log_mail',
-                    'Email log Inderwear',
+                    'Email log',
                     $params,
                     $developperMail,
-                    'Inderwear',
+                    'Ever Log',
                     null,
                     null,
                     null,
