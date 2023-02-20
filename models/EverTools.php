@@ -179,45 +179,4 @@ class EverTools extends ObjectModel
         curl_close($ch);
         return $content;
     }
-
-    /**
-     * Sent file to FTP/SFTP using PhpSecLib
-     * @param string host
-     * @param string password
-     * @param string file on external server
-     * @param string file on local server
-     * @return bool
-    */
-    public static function sendFileToFtp($host, $user, $password, $sentFile, $localFile)
-    {
-        set_include_path(
-            get_include_path() . PATH_SEPARATOR . _PS_MODULE_DIR_.'everpstools/models/tools/phpseclib'
-        );
-        require_once _PS_MODULE_DIR_.'everpstools/models/tools/phpseclib/Net/SFTP.php';
-        $sftp = new Net_SFTP(
-            $host
-        );
-        $sftp->login(
-            $user,
-            $password
-        );
-        $put = $sftp->put($sentFile, $localFile, NET_SFTP_LOCAL_FILE);
-        // Let's log
-        if ((bool)$put === false) {
-            $logContent = '-----------------------------'.PHP_EOL;
-            $logContent .= 'File not sent on date : '.date('Y-m-d H:i:s').PHP_EOL;
-            $logContent .= 'Sent file '.$sentFile.PHP_EOL;
-            $logContent .= 'Local file '.$localFile.PHP_EOL;
-            $logContent .= '-----------------------------'.PHP_EOL;
-            EverLog::addEverLogFile(
-                EverLog::GLOBAL_ERRORS_LOGS,
-                'connect2Ftp-'.date('Y-m-d').'.log',
-                $logContent,
-                true,
-                true,
-                true
-            );
-        }
-        return $put;
-    }
 }

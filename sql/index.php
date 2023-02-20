@@ -1,10 +1,10 @@
 <?php
 /**
- * Project : everblock
+ * Project : everpstools
  * @author Team Ever
- * @link http://team-ever.com
  * @copyright Team Ever
  * @license   Tous droits réservés / Le droit d'auteur s'applique (All rights reserved / French copyright law applies)
+ * @link https://www.celaneo.com
  */
 
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');

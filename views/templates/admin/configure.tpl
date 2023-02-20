@@ -12,7 +12,7 @@
     <h3>{l s='Crons' mod='everpstools'}</h3>
     <ul>
         {foreach from=$ever_crons item=cron}
-        <li><code>{$cron.link}</code> {$cron.description}</li>
+        <li><code>{$cron.link|escape:'htmlall':'UTF-8'}</code> {$cron.description|escape:'htmlall':'UTF-8'}</li>
         {/foreach}
     </ul>
     {/if}
