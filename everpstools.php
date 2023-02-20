@@ -310,6 +310,7 @@ class Everpstools extends Module
                     )
                 )
             ),
+            'EVER_DEVELOPPER_MAIL' => Configuration::get('EVER_DEVELOPPER_MAIL'),
         ];
         $values = call_user_func_array('array_merge', $formValues);
         return $values;
@@ -370,7 +371,7 @@ class Everpstools extends Module
         );
         $informations = [];
         $iwCustomer = EverCustomer::getObjByIdCustomer(
-            (int)$params['id_customer']
+            (int)$order->id_customer
         );
         if (!Validate::isLoadedObject($iwCustomer)) {
             $iwCustomer = new EverCustomer();
@@ -393,8 +394,6 @@ class Everpstools extends Module
         $informations = call_user_func_array('array_merge', $informations);
         $iwCustomer->informations = json_encode($informations);
         $iwCustomer->save();
-        // Check & reset old currency if needed
-        EverOrder::setOldCurrency();
     }
 
     /**
