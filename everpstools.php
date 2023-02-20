@@ -48,9 +48,6 @@ class Everpstools extends Module
 
     public function install()
     {
-        // Install Ajax invisible tab
-        $this->installModuleTabs();
-
         // Install SQL
         include(dirname(__FILE__).'/sql/install.php');
 
