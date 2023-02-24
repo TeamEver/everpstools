@@ -13,6 +13,15 @@ if (!defined('_PS_VERSION_')) {
 
 $sql = array();
 
+$sql[] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'ever_product` (
+        `id_ever_product` int(10) unsigned NOT NULL auto_increment,
+        `id_carrier` int(11) unsigned NOT NULL,
+        `informations` text DEFAULT NULL,
+        `date_add` datetime DEFAULT NULL,
+        `date_upd` datetime DEFAULT NULL,
+        PRIMARY KEY (`id_ever_carrier`, `id_carrier`)
+    ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8';
+
 $sql[] = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'ever_customer` (
         `id_ever_customer` int(10) unsigned NOT NULL auto_increment,
         `id_customer` int(11) unsigned NOT NULL,
